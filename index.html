@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<title>All about Star Wars</title>
+	</head>
+	<body>
+		<header>
+			<div class="nav-line">
+				<button id="ham" aria-expanded="false">&#9776;</button>
+			</div>
+			<nav id="navbar" class="nav">
+				<ul class="nav-list">
+					<li class="nav-link">
+						<a href="#home-section">Home</a>
+					</li>
+					<li class="nav-link">
+						<a href="#about">About</a>
+					</li>
+					<li class="nav-link">
+						<a href="#films">Films</a>
+					</li>
+					<li class="nav-link">
+						<a href="#characters">Characters</a>
+					</li>
+					<li class="nav-link">
+						<a href="#starships">Starships</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section id="home" class="home-bg">
+				<div class="container">
+					<h1 class="sr-only">Star Wars</h1>
+          <img class="logo" src="./starwars-logo.png" alt="Star Wars logo">
+					<p class="lead">
+						All relevant information about films, characters and planets of the Star Wars universe
+					</p>
+				</div>
+			</section>
+			<section id="about" class="section-bg light-bg">
+				<div class="container">
+					<h2 class="section-title">About</h2>
+					<p class="section-text">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+						tempore fugit, hic minima illum illo inventore aperiam iste
+						excepturi eligendi quod magni molestias nobis repellendus neque,
+						dicta earum eius soluta!
+					</p>
+					<p class="section-text">Watch the Star Wars film trailers!</p>
+					<div class="video-wrap">
+						<iframe
+							id="video"
+							width="560"
+							height="315"
+							src="https://www.youtube.com/embed/FDXmcZ1_D-o"
+							allowfullscreen
+						></iframe>
+					</div>
+				</div>
+			</section>
+      <section id="films" class="section-bg dark-bg">
+				<div class="container">
+					<h2 class="section-title">Films</h2>
+					<p class="section-description">
+						Click on a film to learn more about it
+					</p>
+					<div class="flex-films">
+						<div class="flex-box">
+							<h3 class="film-title">Title</h3>
+							<h4 class="release-year">Release year:</h4>
+							<p class="section-text">1978</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="characters" class="section-bg light-bg">
+				<div class="container">
+					<h2 class="section-title">Characters</h2>
+					<p class="section-description">Filter for your favourite character</p>
+					<p class="section-text">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
+						fugiat quod illo cumque assumenda a.
+					</p>
+				</div>
+			</section>
+			<section id="starships" class="section-bg dark-bg">
+				<div class="container">
+					<h2 class="section-title">Starships</h2>
+					<p class="section-description">Chose a starship for more info</p>
+					<p class="section-text">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
+						fugiat quod illo cumque assumenda a.
+					</p>
+				</div>
+			</section>
+		</main>
+		<footer>
+			<div class="webpage-info">
+				<div class="attribution">
+					<p>Images:</p>
+					<p>
+						<a class="link" href="#" target="_blank"
+							>page,</a
+						>
+					</p>
+					<p>
+						<a
+							class="link"
+							href="#"
+							target="_blank"
+							>page</a
+						>
+					</p>
+				</div>
+				<div class="creator">
+					<p>Created by RReiso &copy; 2021</p>
+					<div class="creator-links">
+						<a class="link" href="https://github.com/rreiso" target="_blank">
+							<p class="sr-only">RReiso github.com profile</p>
+							<i class="fa fa-github fa-lg" aria-hidden="true"></i
+						></a>
+						<a class="link" href="https://twitter.com/rreisoh" target="_blank">
+							<p class="sr-only">RReiso twitter.com profile</p>
+							<i class="fa fa-twitter fa-lg" aria-hidden="true"></i
+						></a>
+						<a class="link" href="https://codepen.io/rreiso" target="_blank">
+							<p class="sr-only">RReiso codepen.io profile</p>
+							<i class="fa fa-codepen fa-lg" aria-hidden="true"></i
+						></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script src="./script.js"></script>
+	</body>
+</html>
