@@ -217,6 +217,13 @@ width: 12rem;
 	color: #f3e8cd;
 }
 
+/* || ABOUT */
+.video-wrap {
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+}
+
 
 
 
