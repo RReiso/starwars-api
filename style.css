@@ -6,7 +6,7 @@ html {
 	scroll-behavior: smooth;
 	box-sizing: border-box;
 	font-size: 100%;
-	--color-dark: #2c2c24;
+	--color-dark: #141416;
 	--color-light: #f4eee0;
 	--color-white: #f7f3f3;
 	--color-black: #202020;
@@ -49,7 +49,6 @@ h2 {
 
 .container {
 	margin: 0 0.5rem;
-	padding: 0 0.5rem;
 }
 
 .section-bg {
@@ -78,9 +77,7 @@ h2 {
 	margin: 2rem 0.5rem;
 }
 
-.logo {
-	width: 12rem;
-}
+
 
 .link {
 	text-decoration: none;
@@ -190,8 +187,79 @@ i:hover {
 	outline: none;
 }
 
+/* || HOME */
+
+.home-bg {
+	width: 100%;
+	min-height: 100vh;
+	background-image: url(./space.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+  padding-top: 4rem;
+}
+
+.logo {
+  display: block;
+margin:4rem auto;
+width: 12rem;
+}
+
+.lead {
+	margin: 1.5rem auto;
+	padding: 0;
+	/* max-width: 50rem; */
+	font-size: 1.5rem;
+	font-weight: bold;
+  letter-spacing: 2px;
+	text-align: center;
+	color: #f3e8cd;
+}
+
+
+
+
+
+
+
+/* || FOOTER */
+
+footer {
+  background-color: var(--color-light);
+}
+
+.webpage-info {
+	display: flex;
+	flex-direction: column;
+	padding: 0 1rem 0.5rem;
+	align-items: center;
+  justify-content: center;
+	font-size: 0.875rem;
+}
+
+.creator > *,
+.attribution > * {
+	display: inline-block;
+	margin: 0;
+	padding: 0.25rem;
+}
+
+.creator-links > * {
+padding: 0 0.125rem;
+}
+
+
+
 /* || MEDIA */
 
+@media (min-width: 22.5em){
+/* || HOME */
+.lead{
+max-width: 70%;
+}
+
+}
 @media (min-width: 43.75em) {
   
 	/* || NAVIAGTION */
@@ -223,32 +291,14 @@ i:hover {
 		margin: 0 1rem;
     color: var(--color-white);
 	}
+
+  /* || HOME */
+.logo{
+  margin: 6rem auto;
+  width: 20rem;
 }
 
-
-
-/* || FOOTER */
-
-footer {
-  background-color: var(--color-light);
+.lead {
+font-size: 2rem;
 }
-
-.webpage-info {
-	display: flex;
-	flex-direction: column;
-	padding: 0 1rem 0.5rem;
-	align-items: center;
-  justify-content: center;
-	font-size: 0.875rem;
-}
-
-.creator > *,
-.attribution > * {
-	display: inline-block;
-	margin: 0;
-	padding: 0.25rem;
-}
-
-.creator-links > * {
-padding: 0 0.125rem;
 }
