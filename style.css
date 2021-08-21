@@ -200,7 +200,7 @@ i:hover {
 }
 
 .nav-link a:focus {
-	outline: 2px solid var(--color-black);
+	outline: 2px solid var(--color-gold);
 }
 
 .nav-link a:active {
@@ -285,7 +285,23 @@ width: 12rem;
   padding: 2rem 0;
 }
 
+.episode-characters {
+  display:none;
+}
 
+.display{
+  display:block;
+}
+
+li{
+  list-style-type: none;
+  padding-left:1rem;
+  cursor: pointer;
+}
+
+li:hover{
+  color: var(--color-gold);
+}
 
 /* || FOOTER */
 

@@ -47,23 +47,39 @@ async function displayFilmInfo() {
 	try {
 		await fetch(url)
 			.then((response) => response.json())
-			.then ( async(episodeInfo) => {
-				console.log(episodeInfo)
-        const episode = document.querySelector(".episode");
-        episode.innerHTML = `
-        <p ><span class="gold">Title: </span> ${episodeInfo.title} </p>
-            <p><span  class="gold" >Episode: </span>${
-							episodeInfo.episode_id
-						} </p>
-            <p ><span class="gold">Release Year: </span>${new Date(
-							episodeInfo.release_date
-						).getFullYear()} </p>
-            <p ><span class="gold">Director: </span>${episodeInfo.director}</p>
-            <p ><span class="gold">Opening crawl: </span>"${episodeInfo.opening_crawl}"</p>`;
+			.then ((episodeInfo) => {
+        console.log(episodeInfo)
+        
+        
            
         const characters = episodeInfo.characters;
-        const characterNames= await getInfo(characters);
-        console.log(characterNames);
+   const characterParagraph = document.querySelector(".episode-characters");
+         getNames(characters,characterParagraph);
+    
+       
+        // const starships = episodeInfo.starships;
+				//  getNames(starships);
+  
+
+        
+        
+        
+        const episode = document.querySelector(".episode");
+				episode.innerHTML = `
+        <p ><span class="gold">Title: </span> ${episodeInfo.title} </p>
+        <p><span  class="gold" >Episode: </span>${
+          episodeInfo.episode_id
+        } </p>
+        <p ><span class="gold">Release Year: </span>${new Date(
+          episodeInfo.release_date
+          ).getFullYear()} </p>
+          <p ><span class="gold">Director: </span>${episodeInfo.director}</p>
+          <p ><span class="gold">Opening crawl: </span>"${
+            episodeInfo.opening_crawl
+          }"</p>
+          `;
+          
+          // episode.appendChild(characterParagraph)
 
 			});
 	} catch (error) {
@@ -72,20 +88,41 @@ async function displayFilmInfo() {
 	}
 }
 
-async function getCharacters(characters) {
-  let episodeCharacters=[];
-await characters.forEach(async(character)=>{
-
-	try {
-		await fetch(character)
+function getNames(objects,paragraph) {
+ 
+objects.forEach((object)=>{
+try {
+		fetch(object)
 			.then((response) => response.json())
-			.then((characterInfo) => {
-				episodeCharacters.push(characterInfo.name)
+			.then((data) => {
+        displayObject(data.name, data.url, paragraph)
 			});
+
 	} catch (error) {
 		console.log(error);
-    episodeCharacters.push("Could not load character name")
+    displayObject("Could not load name", paragraph) 
 	}
 })
-return episodeCharacters;
+}
+
+
+function displayObject(name, url="n/a", paragraph){
+ console.log(paragraph)
+  // const characterParagraph = document.querySelector(".episode-characters");
+  paragraph.classList.add("display");
+
+					const objectName = document.createElement("li");
+					objectName.setAttribute("data-url", `${url}`);
+					objectName.textContent=`${name}`;
+       
+          objectName.addEventListener("click", displayCharacterInfo);
+          paragraph.appendChild(objectName);
+
+          // return characterParagraph
+				;
+}
+
+function displayCharacterInfo(){
+  console.log("ir")
+
 }
