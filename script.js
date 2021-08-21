@@ -16,7 +16,7 @@ async function allFilms() {
 				filmList = data.results;
 				filmList.forEach((film) => {
 					const flexBox = document.createElement("div");
-					flexBox.classList.add("flex-box");
+					flexBox.classList.add("flex-box", "shadow", "grey-bg");
 					flexBox.setAttribute("data-url", `${film.url}`);
 					flexBox.addEventListener("click", displayFilmInfo);
 					flexBox.innerHTML = `
@@ -54,9 +54,9 @@ async function allStarships() {
 }
 
 async function displayFilmInfo() {
-	document
-		.getElementById("episode-information")
-		.scrollIntoView({ behavior: "smooth" });
+	const episodeDiv = document.getElementById("episode-information");
+	episodeDiv.scrollIntoView({ behavior: "smooth" });
+	episodeDiv.classList.add("shadow","grey-bg");
 	const episodeErrors = document.querySelector(".episode-errors");
 	episodeErrors.textContent = "";
 	const url = this.getAttribute("data-url");
@@ -133,9 +133,9 @@ async function displayStarshipInfo(url) {
 		.querySelector(".starship-details")
 		.scrollIntoView({ behavior: "smooth" });
 	const starship = document.querySelector(".starship-details");
-  const starshipErrors = document.querySelector(".starship-errors");
+	const starshipErrors = document.querySelector(".starship-errors");
 	starship.innerHTML = "";
-  starshipErrors.textContent="";
+	starshipErrors.textContent = "";
 	try {
 		await fetch(url)
 			.then((response) => response.json())
@@ -157,6 +157,7 @@ async function displayStarshipInfo(url) {
 			});
 	} catch (error) {
 		console.log(error);
-    starshipErrors.textContent="Something went wrong. Could not load starship details."
+		starshipErrors.textContent =
+			"Something went wrong. Could not load starship details.";
 	}
 }

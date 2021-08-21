@@ -8,9 +8,10 @@ html {
 	font-size: 100%;
 	--color-black: #202020;
 	--color-dark: #16161a;
+  --color-grey:#202027;
 	--color-light: #f4eee0;
 	--color-white: #f7f3f3;
-  --color-gold: #c5c329;
+  --color-gold: #bdba2b;
 }
 
 *,
@@ -126,9 +127,18 @@ i:hover {
 .light-bg {
 	background-color: var(--color-light);
 }
+.grey-bg {
+	background-color: var(--color-grey);
+}
 
 .gold{
   color: var(--color-gold);
+}
+.shadow{
+  border-radius: 2px;
+	border: 1px solid rgb(209, 210, 216);
+	-webkit-box-shadow: 0px 0px 12px -1px rgba(153, 153, 153, 0.9);
+	box-shadow: 0px 0px 12px -1px rgba(153, 153, 153, 0.9);
 }
 /* || NAVIGTION */
 
@@ -265,10 +275,6 @@ width: 12rem;
 	align-items: center;
   justify-content: center;
 	text-align: center;
-	border-radius: 2px;
-	border: 1px solid rgb(209, 210, 216);
-	-webkit-box-shadow: 0px 0px 12px -1px rgba(153, 153, 153, 0.9);
-	box-shadow: 0px 0px 12px -1px rgba(153, 153, 153, 0.9);
   transition: all 0.2s ease;
   cursor: pointer;
 }
@@ -281,8 +287,9 @@ width: 12rem;
 
 
 #episode-information{
-  margin: 1rem 0.5rem;
-  padding: 2rem 0;
+  margin: 2rem 1rem;
+  padding: 1rem;
+  
 }
 
 .episode-characters, .episode-starships, .starship-details {
