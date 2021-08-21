@@ -285,7 +285,7 @@ width: 12rem;
   padding: 2rem 0;
 }
 
-.episode-characters {
+.episode-characters, .episode-starships, .starship-details {
   display:none;
 }
 
@@ -293,9 +293,9 @@ width: 12rem;
   display:block;
 }
 
-li{
-  list-style-type: none;
-  padding-left:1rem;
+.object-list{
+  list-style-type:circle;
+  padding-left:0.5rem;
   cursor: pointer;
 }
 
@@ -303,6 +303,20 @@ li:hover{
   color: var(--color-gold);
 }
 
+
+/* || STARSHIPS */
+
+#starship-information{
+  display:flex;
+  flex-direction: column;
+}
+
+.starship-details{
+  padding:1rem;
+ margin: 1rem;
+  border: 3px solid var(--color-gold);
+  height: fit-content;
+}
 /* || FOOTER */
 
 footer {
@@ -381,4 +395,14 @@ max-width: 70%;
 .lead {
 font-size: 2rem;
 }
+
+/* || STARSHIPS */
+#starship-information{
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* .starship-details{
+  margin: 0 1rem;
+} */
 }
