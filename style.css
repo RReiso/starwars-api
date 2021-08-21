@@ -6,10 +6,11 @@ html {
 	scroll-behavior: smooth;
 	box-sizing: border-box;
 	font-size: 100%;
-	--color-dark: #141416;
+	--color-black: #202020;
+	--color-dark: #16161a;
 	--color-light: #f4eee0;
 	--color-white: #f7f3f3;
-	--color-black: #202020;
+  --color-gold: #c5c329;
 }
 
 *,
@@ -47,7 +48,15 @@ h2 {
 	text-align: center;
 }
 
+h3,h4{
+  padding: 0.25rem 0;
+}
+
 p{
+  padding: 0.25rem 0;
+}
+
+.center{
 text-align: center;
 padding: 0.5rem;
 }
@@ -84,11 +93,12 @@ padding: 0.5rem;
   text-align: justify;
 }
 
-
+.errors{
+  color: rgb(238, 235, 77);
+}
 
 .link {
 	text-decoration: none;
-	/* text-align: center; */
 	color: inherit;
 }
 
@@ -117,6 +127,9 @@ i:hover {
 	background-color: var(--color-light);
 }
 
+.gold{
+  color: var(--color-gold);
+}
 /* || NAVIGTION */
 
 .nav-line {
@@ -208,7 +221,7 @@ i:hover {
 }
 
 .logo {
-  display: block;
+display: block;
 margin:4rem auto;
 width: 12rem;
 }
@@ -216,7 +229,6 @@ width: 12rem;
 .lead {
 	margin: 1.5rem auto;
 	padding: 0;
-	/* max-width: 50rem; */
 	font-size: 1.5rem;
 	font-weight: bold;
   letter-spacing: 2px;
@@ -225,15 +237,53 @@ width: 12rem;
 }
 
 /* || ABOUT */
+
 .video-wrap {
 	display: flex;
 	justify-content: center;
 	overflow: hidden;
 }
 
+/* || FILMS */
+
+.flex-films {
+	display: flex;
+	justify-content: center;
+	margin: 1rem auto 0;
+	max-width: 60rem;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.flex-box {
+	display: flex;
+	flex-direction: column;
+	margin: 0.75rem;
+	padding: 1rem;
+	width: 18rem;
+  height: 9.5rem;
+	align-items: center;
+  justify-content: center;
+	text-align: center;
+	border-radius: 2px;
+	border: 1px solid rgb(209, 210, 216);
+	-webkit-box-shadow: 0px 0px 12px -1px rgba(153, 153, 153, 0.9);
+	box-shadow: 0px 0px 12px -1px rgba(153, 153, 153, 0.9);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.flex-box:hover{
+  transform: scale(1.1);
+}
 
 
 
+
+#episode-information{
+  margin: 1rem 0.5rem;
+  padding: 2rem 0;
+}
 
 
 
