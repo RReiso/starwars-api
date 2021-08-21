@@ -15,10 +15,13 @@ async function allFilms() {
 				const films = document.querySelector(".flex-films");
 				filmList = data.results;
 				filmList.forEach((film) => {
+    
 					const flexBox = document.createElement("div");
 					flexBox.classList.add("flex-box", "shadow", "grey-bg");
 					flexBox.setAttribute("data-url", `${film.url}`);
-					flexBox.addEventListener("click", displayFilmInfo);
+					flexBox.addEventListener("click",function(){
+          displayFilmInfo(film);
+          });
 					flexBox.innerHTML = `
           	<h3>Title: <span>${film.title}</span></h3>
               <h4>Episode: <span >${film.episode_id}</span></h4>
@@ -43,121 +46,124 @@ async function allStarships() {
 				.then((data) => {
 					starships = data.results;
 					starships.forEach((starship) => {
-						displayObjectName(starship.name, starship.url, starshipList);
+           
+						displayObjectName(starship, starshipList);
 					});
 				});
 		} catch (error) {
 			console.log(error);
-			displayObjectName("Could not load starship", "n/a", starshipList);
+      errorStarship = { name: "Could not load starship", url: "n/a" };
+			displayObjectName(errorStarship, starshipList);
 		}
 	}
 }
 
-async function displayFilmInfo() {
+function displayFilmInfo(filmInfo) {
 	const episodeDiv = document.getElementById("episode-information");
-	episodeDiv.scrollIntoView({ behavior: "smooth" });
-	episodeDiv.classList.add("shadow","grey-bg");
+	episodeDiv.classList.add("shadow", "grey-bg");
+	episodeDiv.scrollIntoView();
 	const episodeErrors = document.querySelector(".episode-errors");
 	episodeErrors.textContent = "";
-	const url = this.getAttribute("data-url");
 
-	try {
-		await fetch(url)
-			.then((response) => response.json())
-			.then((episodeInfo) => {
-				const characters = episodeInfo.characters;
+
+				const characters = filmInfo.characters;
 				const characterParagraph = document.querySelector(".character-list");
 				getObjectData(characters, characterParagraph);
 
-				const starships = episodeInfo.starships;
+				const starships = filmInfo.starships;
 				const starshipParagraph = document.querySelector(".starship-list");
 				getObjectData(starships, starshipParagraph);
 
-				const episode = document.querySelector(".episode");
-				episode.innerHTML = `
-        <p ><span class="gold">Title: </span> ${episodeInfo.title} </p>
-        <p><span  class="gold" >Episode: </span>${episodeInfo.episode_id} </p>
+				const film = document.querySelector(".film");
+				film.innerHTML = `
+        <p ><span class="gold">Title: </span> ${filmInfo.title} </p>
+        <p><span  class="gold" >Episode: </span>${filmInfo.episode_id} </p>
         <p ><span class="gold">Release Year: </span>${new Date(
-					episodeInfo.release_date
+					filmInfo.release_date
 				).getFullYear()} </p>
-          <p ><span class="gold">Director: </span>${episodeInfo.director}</p>
+          <p ><span class="gold">Director: </span>${filmInfo.director}</p>
           <p ><span class="gold">Opening crawl: </span>"${
-						episodeInfo.opening_crawl
+						filmInfo.opening_crawl
 					}"</p>
           `;
-			});
-	} catch (error) {
-		console.log(error);
-		episodeErrors.textContent = `Something went wrong. Could not load data about the film.`;
-	}
+	
 }
 
 function getObjectData(objects, paragraph) {
-	document.querySelector(".episode-characters").classList.add("display");
+  document.querySelector(".episode-characters").classList.add("display");
 	document.querySelector(".episode-starships").classList.add("display");
 	paragraph.textContent = "";
 	objects.forEach(async (object) => {
-		try {
-			await fetch(object)
-				.then((response) => response.json())
-				.then((data) => {
-					displayObjectName(data.name, data.url, paragraph);
+    try {
+      await fetch(object)
+      .then((response) => response.json())
+      .then((data) => {
+          console.log(data)
+					displayObjectName(data, paragraph);
 				});
 		} catch (error) {
 			console.log(error);
-			displayObjectName("Could not load name", "n/a", paragraph);
+      object = {name: "Could not load name", url: "n/a"}
+			displayObjectName(object, paragraph);
 		}
 	});
 }
 
-function displayObjectName(name, url, paragraph) {
-	const objectName = document.createElement("li");
+function displayObjectName(object, paragraph) {
+  //Create a list element for the object and show it on the screen:
+  const objectName = document.createElement("li");
 	objectName.classList.add("object-list");
-	objectName.setAttribute("data-url", `${url}`);
-	objectName.textContent = `${name}`;
-	objectName.addEventListener("click", displayObjectInfo);
-	paragraph.appendChild(objectName);
+	objectName.setAttribute("data-url", `${object.url}`);
+	
+	objectName.textContent = `${object.name}`;
+  paragraph.appendChild(objectName);
+
+  //Add click event listener only if there was no error:
+  if (object.url !=="n/a"){
+    objectName.addEventListener("click", function(){
+      displayObjectInfo(object);
+    });
+
+  }
+	
 }
 
-function displayObjectInfo() {
-	const url = this.getAttribute("data-url");
+function displayObjectInfo(object) {
+  
+	const url = object.url;
 	if (url.includes("people")) {
-		displayCharacterInfo(url);
+		displayCharacterInfo(object);
 	} else {
-		displayStarshipInfo(url);
-	}
+		displayStarshipInfo(object);
+  }
 }
 
-async function displayStarshipInfo(url) {
-	document
-		.querySelector(".starship-details")
-		.scrollIntoView({ behavior: "smooth" });
-	const starship = document.querySelector(".starship-details");
-	const starshipErrors = document.querySelector(".starship-errors");
-	starship.innerHTML = "";
-	starshipErrors.textContent = "";
-	try {
-		await fetch(url)
-			.then((response) => response.json())
-			.then((starshipInfo) => {
-				starship.classList.add("display");
-				starship.innerHTML = `
-        <p ><span class="gold">Name: </span> ${starshipInfo.name} </p>
-        <p><span  class="gold" >Model: </span>${starshipInfo.model} </p>
-        <p ><span class="gold">Manufacturer: </span>${starshipInfo.manufacturer} </p>
-          <p ><span class="gold">Class: </span>${starshipInfo.starship_class}</p>
-          <p ><span class="gold">Length: </span>"${starshipInfo.length}"</p>
-          <p ><span class="gold">Cargo Capacity: </span>${starshipInfo.cargo_capacity}</p>
-          <p ><span class="gold">Hyperdrive Rating: </span>${starshipInfo.hyperdrive_rating}</p>
-          <p ><span class="gold">Max Atmosphering Speed: </span>${starshipInfo.max_atmosphering_speed}</p>
-          <p ><span class="gold">Passengers: </span>${starshipInfo.passengers}</p>
-          <p ><span class="gold">Crew: </span>${starshipInfo.crew}</p>
-          <p ><span class="gold">Consumables: </span>${starshipInfo.consumables}</p>
-          `;
-			});
-	} catch (error) {
-		console.log(error);
-		starshipErrors.textContent =
-			"Something went wrong. Could not load starship details.";
-	}
+function displayCharacterInfo(object){
+  console.log("im in")
 }
+
+function displayStarshipInfo(starshipInfo) {
+	const starship = document.querySelector(".starship-details");
+	
+	
+	starship.innerHTML = "";
+	
+	
+  starship.classList.add("display");
+  starship.innerHTML = `
+  <p ><span class="gold">Name: </span> ${starshipInfo.name} </p>
+  <p><span  class="gold" >Model: </span>${starshipInfo.model} </p>
+  <p ><span class="gold">Manufacturer: </span>${starshipInfo.manufacturer} </p>
+  <p ><span class="gold">Class: </span>${starshipInfo.starship_class}</p>
+  <p ><span class="gold">Length: </span>"${starshipInfo.length}"</p>
+  <p ><span class="gold">Cargo Capacity: </span>${starshipInfo.cargo_capacity}</p>
+  <p ><span class="gold">Hyperdrive Rating: </span>${starshipInfo.hyperdrive_rating}</p>
+  <p ><span class="gold">Max Atmosphering Speed: </span>${starshipInfo.max_atmosphering_speed}</p>
+  <p ><span class="gold">Passengers: </span>${starshipInfo.passengers}</p>
+  <p ><span class="gold">Crew: </span>${starshipInfo.crew}</p>
+  <p ><span class="gold">Consumables: </span>${starshipInfo.consumables}</p>
+  `;
+  starship.scrollIntoView(true);
+};
+
+
