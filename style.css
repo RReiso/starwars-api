@@ -73,7 +73,6 @@ padding: 0.5rem;
 }
 
 .section-title {
-	margin: 0;
 	text-transform: uppercase;
 	font-size: 2rem;
 	letter-spacing: 1px;
@@ -94,9 +93,6 @@ padding: 0.5rem;
   text-align: justify;
 }
 
-.errors{
-  color: rgb(238, 235, 77);
-}
 
 .link {
 	text-decoration: none;
@@ -286,13 +282,13 @@ width: 12rem;
 
 
 
-#episode-information{
+#film-information{
   margin: 2rem 1rem;
   padding: 1rem;
   
 }
 
-.episode-characters, .episode-starships, .starship-details {
+.film-characters, .film-starships, .starship-details {
   display:none;
 }
 
@@ -300,7 +296,12 @@ width: 12rem;
   display:block;
 }
 
-.object-list{
+.error{
+  list-style-type:none;
+  text-align: center;
+}
+
+.list-item{
   list-style-type:circle;
   padding-left:0.5rem;
   cursor: pointer;
@@ -401,6 +402,13 @@ max-width: 70%;
 
 .lead {
 font-size: 2rem;
+}
+
+/* || FILMS */
+#film-information{
+  margin: 2rem 5rem;
+  padding: 3rem;
+  
 }
 
 /* || STARSHIPS */

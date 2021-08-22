@@ -1,13 +1,13 @@
 const URI = "https://swapi.dev/api/";
 
-(function () {
+(function init () {
 	allFilms();
 	allStarships();
+  // allCharacters();
 })();
 
 async function allFilms() {
 	const filmErrors = document.querySelector(".film-errors");
-	filmErrors.textContent = "";
 	try {
 		await fetch(`${URI}films/`)
 			.then((response) => response.json())
@@ -16,29 +16,29 @@ async function allFilms() {
 				filmList = data.results;
 				filmList.forEach((film) => {
     
-					const flexBox = document.createElement("div");
-					flexBox.classList.add("flex-box", "shadow", "grey-bg");
-					flexBox.setAttribute("data-url", `${film.url}`);
-					flexBox.addEventListener("click",function(){
+					const filmBox = document.createElement("div");
+					filmBox.classList.add("flex-box", "shadow", "grey-bg");
+					filmBox.addEventListener("click",function(){
           displayFilmInfo(film);
           });
-					flexBox.innerHTML = `
+					filmBox.innerHTML = `
           	<h3>Title: <span>${film.title}</span></h3>
               <h4>Episode: <span >${film.episode_id}</span></h4>
 							<h4 class="gold">Release year: <span class="year">${new Date(
-								film.release_date
-							).getFullYear()}</span></h4></a>`;
-					films.appendChild(flexBox);
+								film.release_date).getFullYear()}</span></h4></a>`;
+					films.appendChild(filmBox);
 				});
 			});
 	} catch (error) {
-		console.log(error);
-		filmErrors.textContent = `Something went wrong. Could not load films.`;
+		handleError(error,filmErrors);
 	}
 }
 
 async function allStarships() {
 	const starshipList = document.querySelector(".all-starships");
+	const starshipErrors = document.querySelector(".starship-errors");
+
+  //There are 4 pages of starships in Star Wars API:
 	for (let i = 1; i < 5; i++) {
 		try {
 			await fetch(`${URI}/starships/?page=${i}`)
@@ -46,24 +46,20 @@ async function allStarships() {
 				.then((data) => {
 					starships = data.results;
 					starships.forEach((starship) => {
-           
 						displayObjectName(starship, starshipList);
 					});
 				});
 		} catch (error) {
-			console.log(error);
-      errorStarship = { name: "Could not load starship", url: "n/a" };
-			displayObjectName(errorStarship, starshipList);
+		handleError(error,starshipErrors);
 		}
 	}
 }
 
 function displayFilmInfo(filmInfo) {
-	const episodeDiv = document.getElementById("episode-information");
-	episodeDiv.classList.add("shadow", "grey-bg");
-	episodeDiv.scrollIntoView();
-	const episodeErrors = document.querySelector(".episode-errors");
-	episodeErrors.textContent = "";
+	const filmDiv = document.getElementById("film-information");
+	filmDiv.classList.add("shadow", "grey-bg");
+	filmDiv.scrollIntoView();
+	
 
 
 				const characters = filmInfo.characters;
@@ -74,8 +70,8 @@ function displayFilmInfo(filmInfo) {
 				const starshipParagraph = document.querySelector(".starship-list");
 				getObjectData(starships, starshipParagraph);
 
-				const film = document.querySelector(".film");
-				film.innerHTML = `
+				const filmDetails = document.querySelector(".film-details");
+				filmDetails.innerHTML = `
         <p ><span class="gold">Title: </span> ${filmInfo.title} </p>
         <p><span  class="gold" >Episode: </span>${filmInfo.episode_id} </p>
         <p ><span class="gold">Release Year: </span>${new Date(
@@ -90,8 +86,8 @@ function displayFilmInfo(filmInfo) {
 }
 
 function getObjectData(objects, paragraph) {
-  document.querySelector(".episode-characters").classList.add("display");
-	document.querySelector(".episode-starships").classList.add("display");
+  document.querySelector(".film-characters").classList.add("display");
+	document.querySelector(".film-starships").classList.add("display");
 	paragraph.textContent = "";
 	objects.forEach(async (object) => {
     try {
@@ -102,34 +98,29 @@ function getObjectData(objects, paragraph) {
 					displayObjectName(data, paragraph);
 				});
 		} catch (error) {
-			console.log(error);
-      object = {name: "Could not load name", url: "n/a"}
-			displayObjectName(object, paragraph);
+      handleError(error,paragraph);
 		}
 	});
 }
 
+function handleError(error,paragraph){
+  console.error(error);
+  const err = document.createElement("p");
+  err.textContent = "Error loading some content";
+	paragraph.appendChild(err);
+  }
+
 function displayObjectName(object, paragraph) {
-  //Create a list element for the object and show it on the screen:
   const objectName = document.createElement("li");
-	objectName.classList.add("object-list");
-	objectName.setAttribute("data-url", `${object.url}`);
-	
+	objectName.classList.add("list-item");
 	objectName.textContent = `${object.name}`;
   paragraph.appendChild(objectName);
-
-  //Add click event listener only if there was no error:
-  if (object.url !=="n/a"){
     objectName.addEventListener("click", function(){
       displayObjectInfo(object);
     });
-
-  }
-	
 }
 
 function displayObjectInfo(object) {
-  
 	const url = object.url;
 	if (url.includes("people")) {
 		displayCharacterInfo(object);
@@ -144,12 +135,8 @@ function displayCharacterInfo(object){
 
 function displayStarshipInfo(starshipInfo) {
 	const starship = document.querySelector(".starship-details");
-	
-	
-	starship.innerHTML = "";
-	
-	
   starship.classList.add("display");
+	starship.innerHTML = "";
   starship.innerHTML = `
   <p ><span class="gold">Name: </span> ${starshipInfo.name} </p>
   <p><span  class="gold" >Model: </span>${starshipInfo.model} </p>
@@ -163,7 +150,7 @@ function displayStarshipInfo(starshipInfo) {
   <p ><span class="gold">Crew: </span>${starshipInfo.crew}</p>
   <p ><span class="gold">Consumables: </span>${starshipInfo.consumables}</p>
   `;
-  starship.scrollIntoView(true);
+  starship.scrollIntoView();
 };
 
 
