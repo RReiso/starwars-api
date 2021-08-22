@@ -12,14 +12,14 @@ async function allFilms() {
 		await fetch(`${URI}films/`)
 			.then((response) => response.json())
 			.then((data) => {
-				const films = document.querySelector(".flex-films");
+				const films = document.querySelector(".all-films");
 				filmList = data.results;
 				filmList.forEach((film) => {
     
 					const filmBox = document.createElement("div");
 					filmBox.classList.add("flex-box", "shadow", "grey-bg");
 					filmBox.addEventListener("click",function(){
-          displayFilmInfo(film);
+          displayFilmDetails(film);
           });
 					filmBox.innerHTML = `
           	<h3>Title: <span>${film.title}</span></h3>
@@ -46,7 +46,7 @@ async function allStarships() {
 				.then((data) => {
 					starships = data.results;
 					starships.forEach((starship) => {
-						displayObjectName(starship, starshipList);
+						displayItem(starship, starshipList);
 					});
 				});
 		} catch (error) {
@@ -55,7 +55,7 @@ async function allStarships() {
 	}
 }
 
-function displayFilmInfo(filmInfo) {
+function displayFilmDetails(filmInfo) {
 	const filmDiv = document.getElementById("film-information");
 	filmDiv.classList.add("shadow", "grey-bg");
 	filmDiv.scrollIntoView();
@@ -63,12 +63,12 @@ function displayFilmInfo(filmInfo) {
 
 
 				const characters = filmInfo.characters;
-				const characterParagraph = document.querySelector(".character-list");
-				getObjectData(characters, characterParagraph);
+				const characterList = document.querySelector(".character-list");
+				getItemData(characters, characterList);
 
 				const starships = filmInfo.starships;
-				const starshipParagraph = document.querySelector(".starship-list");
-				getObjectData(starships, starshipParagraph);
+				const starshipList = document.querySelector(".starship-list");
+				getItemData(starships, starshipList);
 
 				const filmDetails = document.querySelector(".film-details");
 				filmDetails.innerHTML = `
@@ -85,55 +85,55 @@ function displayFilmInfo(filmInfo) {
 	
 }
 
-function getObjectData(objects, paragraph) {
+function getItemData(itemURLs, list) {
   document.querySelector(".film-characters").classList.add("display");
 	document.querySelector(".film-starships").classList.add("display");
-	paragraph.textContent = "";
-	objects.forEach(async (object) => {
+	list.textContent = "";
+	itemURLs.forEach(async (url) => {
     try {
-      await fetch(object)
+      await fetch(url)
       .then((response) => response.json())
-      .then((data) => {
-          console.log(data)
-					displayObjectName(data, paragraph);
+      .then((itemInfo) => {
+					displayItem(itemInfo, list);
 				});
 		} catch (error) {
-      handleError(error,paragraph);
+      handleError(error,list);
 		}
 	});
 }
 
-function handleError(error,paragraph){
+function handleError(error,DOMelement){
   console.error(error);
   const err = document.createElement("p");
   err.textContent = "Error loading some content";
-	paragraph.appendChild(err);
+	DOMelement.appendChild(err);
   }
 
-function displayObjectName(object, paragraph) {
-  const objectName = document.createElement("li");
-	objectName.classList.add("list-item");
-	objectName.textContent = `${object.name}`;
-  paragraph.appendChild(objectName);
-    objectName.addEventListener("click", function(){
-      displayObjectInfo(object);
-    });
-}
+function displayItem(itemInfo, list) {
+  const item = document.createElement("li");
+	item.classList.add("list-item");
+	item.textContent = `${itemInfo.name}`;
+  list.appendChild(item);
 
-function displayObjectInfo(object) {
-	const url = object.url;
-	if (url.includes("people")) {
-		displayCharacterInfo(object);
+  // Add event listeners to characters and starships
+	if (itemInfo.url.includes("people")) {
+		item.addEventListener("click", function () {
+			displayCharacterDetails(itemInfo);
+		});
 	} else {
-		displayStarshipInfo(object);
-  }
+		item.addEventListener("click", function () {
+			displayStarshipDetails(itemInfo);
+		});
+	}
+    
 }
 
-function displayCharacterInfo(object){
+
+function displayCharacterDetails(object){
   console.log("im in")
 }
 
-function displayStarshipInfo(starshipInfo) {
+function displayStarshipDetails(starshipInfo) {
 	const starship = document.querySelector(".starship-details");
   starship.classList.add("display");
 	starship.innerHTML = "";
