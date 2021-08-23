@@ -12,6 +12,7 @@ html {
 	--color-light: #f4eee0;
 	--color-white: #f7f3f3;
   --color-gold: #bdba2b;
+  --color-dark-gold: #85691a;
 }
 
 *,
@@ -124,9 +125,15 @@ i:hover {
 .grey-bg {
 	background-color: var(--color-grey);
 }
+.white-bg{
+  background-color: var(--color-white);
+}
 
 .gold{
   color: var(--color-gold);
+}
+.dark-gold{
+  color: var(--color-dark-gold);
 }
 .shadow{
   border-radius: 2px;
@@ -280,13 +287,13 @@ width: 12rem;
 
 
 
-#film-information{
+.film-information{
   margin: 2rem 1rem;
   padding: 1rem;
   
 }
 
-.film-characters, .film-starships, .starship-details, .character-details, .character-starships, .character-films {
+.film-information, .starship-details, .character-information{
   display:none;
 }
 
@@ -319,47 +326,43 @@ li:hover{
 }
 
 .search {
- 
   text-align: center;
   padding:0.5rem 0;
   outline: none;
   border: none;
   width: 100%;
-  /* left: -10%;  */
-  position: relative;
-  top: 10px;
-  z-index: 2;
-  border-radius: 5px;
   font-size: 1.5rem;
+  -webkit-box-shadow:  0 0 5px rgba(0, 0, 0, 0.397), inset 0 0 4px rgba(51, 29, 29, 0.637);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.397), inset 0 0 4px rgba(51, 29, 29, 0.637);
 }
 
 .search:focus{
-   border: 2px solid var(--color-gold)
+   outline: 2px solid var(--color-gold)
 }
 .all-characters {
   margin: 0;
-  padding: 0.5rem 0;
-  position: relative;
+  padding: 0.125rem 0;
   cursor: pointer;
-  /*perspective: 20px;*/
 }
 
 .all-characters li {
   background: var(--color-white);
   list-style: none;
   border-bottom: 1px solid var(--color-light);
+  -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.14);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
   padding: 0.5rem;
-  transition: background 0.2s;
-  display: flex;
-  justify-content: space-between;
-  text-transform: capitalize;
 }
+
+.character-information{
+  padding: 1.5rem;
+  margin:1rem;
+}
+
 
 /* || STARSHIPS */
 
-#starship-information{
+.starship-information{
   display:flex;
   flex-direction: column;
 }
@@ -450,14 +453,14 @@ font-size: 2rem;
 }
 
 /* || FILMS */
-#film-information{
+.film-information, .character-information{
   margin: 2rem 5rem;
   padding: 3rem;
   
 }
 
 /* || STARSHIPS */
-#starship-information{
+.starship-information{
   flex-direction: row;
   justify-content: space-evenly;
 }

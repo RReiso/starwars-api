@@ -96,8 +96,9 @@ function showCharacters() {
 }
 
 function displayFilmDetails(filmInfo) {
-	const filmDiv = document.getElementById("film-information");
-	filmDiv.classList.add("shadow", "grey-bg");
+  const filmDiv = document.querySelector(".film-information");
+	filmDiv.classList.add("shadow", "grey-bg", "display");
+  filmDiv.scrollIntoView();
 	
 
 	const filmDetails = document.querySelector(".film-details");
@@ -111,7 +112,6 @@ function displayFilmDetails(filmInfo) {
           <p ><span class="gold">Opening crawl: </span>"${
 						filmInfo.opening_crawl
 					}"</p>`;
-          filmDiv.scrollIntoView();
 
   // Fetch character and starship data of the film:
   const charactersInFilm = document.querySelector(".character-list");
@@ -122,10 +122,9 @@ function displayFilmDetails(filmInfo) {
 }
 
 function getItemData(itemURLs, list) {
-	document.querySelector(".film-characters").classList.add("display");
-	document.querySelector(".film-starships").classList.add("display");
-	document.querySelector(".character-starships").classList.add("display");
-	document.querySelector(".character-films").classList.add("display");
+  // document.querySelector(".character-information").classList.add("display");
+  
+
 
 	list.innerHTML = "";
 	itemURLs.forEach(async (url) => {
@@ -149,42 +148,53 @@ function handleError(error, DOMelement) {
 }
 
 function displayItem(itemInfo, list) {
-  
 	const item = document.createElement("li");
 	item.classList.add("list-item");
-	item.textContent = `${itemInfo.name}`;
+	item.textContent = `${itemInfo.name || itemInfo.title}`;
 	list.appendChild(item);
 
-	// Add event listeners to characters and starships
+	// Add event listeners to displayed films, characters and starships
 	if (itemInfo.url.includes("people")) {
 		item.addEventListener("click", function () {
 			displayCharacterDetails(itemInfo);
-		});
-	} else {
+		})
+	} else if (itemInfo.url.includes("starships")) {
 		item.addEventListener("click", function () {
 			displayStarshipDetails(itemInfo);
-		});
-	}
+		})
+	}else{
+    	item.addEventListener("click", function () {
+			displayFilmDetails(itemInfo);
+  })
+}
 }
 
 function displayCharacterDetails(characterInfo) {
-  const character = document.querySelector(".character-details");
-	console.log(characterInfo);
-  character.classList.add("display");
-  character.innerHTML = `
-  <p ><span class="gold">Name: </span> ${characterInfo.name} </p>
-  <p><span  class="gold" >Gender: </span>${characterInfo.gender} </p>
-  <p ><span class="gold">Birth Year: </span>${characterInfo.birth_year} </p>
-  <p ><span class="gold">Height: </span>${characterInfo.height}</p>
-  <p ><span class="gold">Eye Color: </span>"${characterInfo.eye_color}"</p>
-  <p ><span class="gold">Skin Color: </span>"${characterInfo.skin_color}"</p>
-  <p ><span class="gold">Hair Color: </span>"${characterInfo.hair_color}"</p>
-  <p ><span class="gold">Mass: </span>"${characterInfo.mass}"</p>`;
-  character.scrollIntoView();
+  const characterDiv = document.querySelector(".character-information");
+  characterDiv.classList.add("shadow", "display", "white-bg");
 
-  const starshipsWithCharacter = document.querySelector(".character-starship-list");
-  getItemData(characterInfo.starships, starshipsWithCharacter);
-  
+    
+    const character = document.querySelector(".character-details");
+    
+    
+    character.innerHTML = `
+    <p ><span class="dark-gold">Name: </span> ${characterInfo.name} </p>
+    <p><span  class="dark-gold" >Gender: </span>${characterInfo.gender} </p>
+    <p ><span class="dark-gold">Birth Year: </span>${characterInfo.birth_year} </p>
+    <p ><span class="dark-gold">Height: </span>${characterInfo.height}</p>
+    <p ><span class="dark-gold">Eye Color: </span>"${characterInfo.eye_color}"</p>
+    <p ><span class="dark-gold">Skin Color: </span>"${characterInfo.skin_color}"</p>
+    <p ><span class="dark-gold">Hair Color: </span>"${characterInfo.hair_color}"</p>
+    <p ><span class="dark-gold">Mass: </span>"${characterInfo.mass}"</p>`;
+    
+    
+    const filmsWithCharacter = document.querySelector(".character-film-list");
+    getItemData(characterInfo.films, filmsWithCharacter);
+    
+    const starshipsWithCharacter = document.querySelector(".character-starship-list");
+    getItemData(characterInfo.starships, starshipsWithCharacter);
+
+      character.scrollIntoView(true);
 }
 
 function displayStarshipDetails(starshipInfo) {
