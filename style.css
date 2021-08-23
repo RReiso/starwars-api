@@ -8,11 +8,11 @@ html {
 	font-size: 100%;
 	--color-black: #202020;
 	--color-dark: #16161a;
-  --color-grey:#202027;
+	--color-grey: #202027;
 	--color-light: #f4eee0;
 	--color-white: #f7f3f3;
-  --color-gold: #bdba2b;
-  --color-dark-gold: #85691a;
+	--color-gold: #bdba2b;
+	--color-dark-gold: #695900;
 }
 
 *,
@@ -50,20 +50,19 @@ h2 {
 	text-align: center;
 }
 
-h3,h4{
-  padding: 0.25rem 0;
+h3,
+h4 {
+	padding: 0.25rem 0;
 }
 
-p{
-  padding: 0.25rem 0;
+p {
+	padding: 0.25rem 0;
 }
 
-.center{
-text-align: center;
-padding: 0.5rem;
+.center {
+	text-align: center;
+	padding: 0.5rem;
 }
-
-
 
 .section-bg {
 	padding-top: 1.5rem;
@@ -83,15 +82,14 @@ padding: 0.5rem;
 	max-width: 50rem;
 	line-height: 1.5;
 	font-size: 1.5rem;
-  text-align: center;
+	text-align: center;
 }
 
 .section-text {
 	margin: 2rem 0.25rem;
-  line-height: 30px;
-  text-align: justify;
+	line-height: 30px;
+	text-align: justify;
 }
-
 
 .link {
 	text-decoration: none;
@@ -101,7 +99,12 @@ padding: 0.5rem;
 .link:hover,
 .link:focus,
 i:hover {
-	opacity: 0.8;
+	opacity: 0.7;
+}
+
+.error {
+	list-style-type: none;
+	text-align: center;
 }
 
 /* || UTILITIES */
@@ -122,25 +125,30 @@ i:hover {
 .light-bg {
 	background-color: var(--color-light);
 }
+
 .grey-bg {
 	background-color: var(--color-grey);
 }
-.white-bg{
-  background-color: var(--color-white);
+
+.white-bg {
+	background-color: var(--color-white);
 }
 
-.gold{
-  color: var(--color-gold);
+.gold {
+	color: var(--color-gold);
 }
-.dark-gold{
-  color: var(--color-dark-gold);
+
+.dark-gold {
+	color: var(--color-dark-gold);
 }
-.shadow{
-  border-radius: 2px;
+
+.shadow {
+	border-radius: 2px;
 	border: 1px solid rgb(209, 210, 216);
 	-webkit-box-shadow: 0px 0px 12px -1px rgba(153, 153, 153, 0.9);
 	box-shadow: 0px 0px 12px -1px rgba(153, 153, 153, 0.9);
 }
+
 /* || NAVIGTION */
 
 .nav-line {
@@ -228,13 +236,13 @@ i:hover {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-  padding-top: 4rem;
+	padding-top: 4rem;
 }
 
 .logo {
-display: block;
-margin:4rem auto;
-width: 12rem;
+	display: block;
+	margin: 4rem auto;
+	width: 12rem;
 }
 
 .lead {
@@ -242,7 +250,7 @@ width: 12rem;
 	padding: 0;
 	font-size: 1.5rem;
 	font-weight: bold;
-  letter-spacing: 2px;
+	letter-spacing: 2px;
 	text-align: center;
 	color: #f3e8cd;
 }
@@ -272,111 +280,104 @@ width: 12rem;
 	margin: 0.75rem;
 	padding: 1rem;
 	width: 18rem;
-  height: 9.5rem;
+	height: 9.5rem;
 	align-items: center;
-  justify-content: center;
+	justify-content: center;
 	text-align: center;
-  transition: all 0.2s ease;
-  cursor: pointer;
+	transition: all 0.2s ease;
+	cursor: pointer;
 }
 
-.flex-box:hover{
-  transform: scale(1.1);
+.flex-box:hover {
+	transform: scale(1.1);
 }
 
-
-
-
-.film-information{
-  margin: 2rem 1rem;
-  padding: 1rem;
-  
+.film-information {
+	margin: 2rem 1rem;
+	padding: 1rem;
 }
 
-.film-information, .starship-details, .character-information{
-  display:none;
+.film-information,
+.starship-details,
+.character-information {
+	display: none;
 }
 
-.display{
-  display:block;
+.display {
+	display: block;
 }
 
-.error{
-  list-style-type:none;
-  text-align: center;
+.list-item {
+	list-style-type: circle;
+	padding-left: 0.5rem;
+	cursor: pointer;
 }
 
-.list-item{
-  list-style-type:circle;
-  padding-left:0.5rem;
-  cursor: pointer;
+li:hover {
+	color: var(--color-gold);
 }
-
-li:hover{
-  color: var(--color-gold);
-}
-
 
 /* || CHARACTERS */
 
 .search-form {
-  width: 15rem;
-  /* height: 8rem; */
-  margin: 1rem auto 2rem;
+	width: 15rem;
+	margin: 1rem auto 2rem;
 }
 
 .search {
-  text-align: center;
-  padding:0.5rem 0;
-  outline: none;
-  border: none;
-  width: 100%;
-  font-size: 1.5rem;
-  -webkit-box-shadow:  0 0 5px rgba(0, 0, 0, 0.397), inset 0 0 4px rgba(51, 29, 29, 0.637);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.397), inset 0 0 4px rgba(51, 29, 29, 0.637);
+	text-align: center;
+	padding: 0.5rem 0;
+	outline: none;
+	border: none;
+	width: 100%;
+	font-size: 1.5rem;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.397),
+		inset 0 0 4px rgba(51, 29, 29, 0.637);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.397),
+		inset 0 0 4px rgba(51, 29, 29, 0.637);
 }
 
-.search:focus{
-   outline: 2px solid var(--color-gold)
+.search:focus {
+	outline: 2px solid var(--color-gold);
 }
 .all-characters {
-  margin: 0;
-  padding: 0.125rem 0;
-  cursor: pointer;
+	margin: 0;
+	padding: 0.125rem 0;
+	cursor: pointer;
 }
 
 .all-characters li {
-  background: var(--color-white);
-  list-style: none;
-  border-bottom: 1px solid var(--color-light);
-  -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.14);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
-  padding: 0.5rem;
+	background: var(--color-white);
+	list-style: none;
+	border-bottom: 1px solid var(--color-light);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+	padding: 0.5rem;
 }
 
-.character-information{
-  padding: 1.5rem;
-  margin:1rem;
+.character-information {
+	padding: 1.5rem;
+	margin: 1rem;
 }
-
 
 /* || STARSHIPS */
 
-.starship-information{
-  display:flex;
-  flex-direction: column;
+.starship-information {
+	display: flex;
+	flex-direction: column;
 }
 
-.starship-details{
-  padding:1rem;
- margin: 1rem;
-  border: 3px solid var(--color-gold);
-  height: fit-content;
+.starship-details {
+	padding: 1rem;
+	margin: 1rem;
+	border: 3px solid var(--color-gold);
+	height: fit-content;
 }
+
 /* || FOOTER */
 
 footer {
-  background-color: var(--color-light);
+	background-color: var(--color-light);
 }
 
 .webpage-info {
@@ -384,7 +385,7 @@ footer {
 	flex-direction: column;
 	padding: 0 1rem 0.5rem;
 	align-items: center;
-  justify-content: center;
+	justify-content: center;
 	font-size: 0.875rem;
 }
 
@@ -396,22 +397,19 @@ footer {
 }
 
 .creator-links > * {
-padding: 0 0.125rem;
+	padding: 0 0.125rem;
 }
-
-
 
 /* || MEDIA */
 
-@media (min-width: 22.5em){
-/* || HOME */
-.lead{
-max-width: 70%;
-}
+@media (min-width: 22.5em) {
+	/* || HOME */
 
+	.lead {
+		max-width: 70%;
+	}
 }
 @media (min-width: 43.75em) {
-  
 	/* || NAVIAGTION */
 
 	.nav-line {
@@ -424,7 +422,7 @@ max-width: 70%;
 		left: 0rem;
 		width: 100%;
 		background: var(--color-dark);
-    border-bottom: none;
+		border-bottom: none;
 		-webkit-box-shadow: 0px 4px 10px -3px rgba(0, 0, 0, 0.54);
 		box-shadow: 0px 4px 10px -3px rgba(0, 0, 0, 0.54);
 		z-index: 101;
@@ -434,36 +432,36 @@ max-width: 70%;
 		flex-direction: row;
 		justify-content: flex-end;
 		padding: 1rem 0.5rem;
-    
 	}
 
 	.nav-link a {
 		margin: 0 1rem;
-    color: var(--color-white);
+		color: var(--color-white);
 	}
 
-  /* || HOME */
-.logo{
-  margin: 6rem auto;
-  width: 20rem;
-}
+	/* || HOME */
 
-.lead {
-font-size: 2rem;
-}
+	.logo {
+		margin: 6rem auto;
+		width: 20rem;
+	}
 
-/* || FILMS */
-.film-information, .character-information{
-  margin: 2rem 5rem;
-  padding: 3rem;
-  
-}
+	.lead {
+		font-size: 2rem;
+	}
 
-/* || STARSHIPS */
-.starship-information{
-  flex-direction: row;
-  justify-content: space-evenly;
-}
+	/* || FILMS , CHARACTERS*/
 
+	.film-information,
+	.character-information {
+		margin: 2rem 5rem;
+		padding: 3rem;
+	}
 
+	/* || STARSHIPS */
+
+	.starship-information {
+		flex-direction: row;
+		justify-content: space-evenly;
+	}
 }
