@@ -1,4 +1,4 @@
-//// GLOBAL VARIABLES ////
+//--- GLOBAL VARIABLES ---//
 
 const URI = "https://swapi.dev/api/";
 
@@ -11,15 +11,12 @@ const filmErrors = document.querySelector(".film-errors");
 const characterErrors = document.querySelector(".character-errors");
 const starshipErrors = document.querySelector(".starship-errors");
 
+//--- START PROGRAM ---//
+fetchAllFilms();
+fetchAllStarships();
+fetchAllCharacters();
 
-//// START PROGRAM ////
-(function init() {
-	fetchAllFilms();
-	fetchAllStarships();
-	fetchAllCharacters();
-})();
-
-//// FETCH LISTS OF ALL FILMS, ALL PEOPLE, ALL STARSHIPS
+//--- FETCH LISTS OF ALL FILMS, ALL PEOPLE, ALL STARSHIPS ---//
 
 async function fetchAllFilms() {
 	try {
@@ -64,7 +61,7 @@ async function fetchAllStarships() {
 }
 
 async function fetchAllCharacters() {
-  const searchInput = document.querySelector(".search");
+	const searchInput = document.querySelector(".search");
 	searchInput.addEventListener("input", showCharacters);
 	window.addEventListener("click", function () {
 		characterList.innerHTML = "";
@@ -85,11 +82,16 @@ async function fetchAllCharacters() {
 	}
 }
 
-
-//// FETCH DATA ABOUT INDIVIDUAL ITEMS: ////
+//--- FETCH DATA ABOUT INDIVIDUAL ITEMS: ---//
 
 function getItemData(itemURLs, list) {
 	list.innerHTML = "";
+
+	if (itemURLs.length === 0) {
+		itemInfo = { name: "This character has not piloted any starships", url: "n/a" };
+		displayItem(itemInfo, list);
+	}
+
 	itemURLs.forEach(async (url) => {
 		try {
 			await fetch(url)
@@ -118,14 +120,14 @@ function displayItem(itemInfo, list) {
 		item.addEventListener("click", function () {
 			displayStarshipDetails(itemInfo);
 		});
-	} else {
+	} else if (itemInfo.url.includes("films")){
 		item.addEventListener("click", function () {
 			displayFilmDetails(itemInfo);
 		});
 	}
 }
 
-//// FUNCTIONS TRIGERED BY CLICK EVENTS ////
+//--- FUNCTIONS TRIGERED BY CLICK EVENTS ---//
 
 // Show character names according to the user search:
 function showCharacters() {
@@ -149,13 +151,9 @@ function displayFilmDetails(filmInfo) {
 	filmDetails.innerHTML = `
         <p ><span class="gold">Title: </span> ${filmInfo.title} </p>
         <p><span  class="gold" >Episode: </span>${filmInfo.episode_id} </p>
-        <p ><span class="gold">Release Year: </span>${new Date(
-					filmInfo.release_date
-				).getFullYear()}</p>
+        <p ><span class="gold">Release Year: </span>${new Date(filmInfo.release_date).getFullYear()}</p>
         <p ><span class="gold">Director: </span>${filmInfo.director}</p>
-        <p ><span class="gold">Opening crawl: </span>"${
-					filmInfo.opening_crawl
-				}"</p>`;
+        <p ><span class="gold">Opening crawl: </span>"${filmInfo.opening_crawl}"</p>`;
 
 	// Fetch data about characters and starships related to the film:
 	const charactersInFilm = document.querySelector(".character-list");
@@ -178,9 +176,9 @@ function displayCharacterDetails(characterInfo) {
     <p ><span class="dark-gold">Skin Color: </span>"${characterInfo.skin_color}"</p>
     <p ><span class="dark-gold">Hair Color: </span>"${characterInfo.hair_color}"</p>
     <p ><span class="dark-gold">Mass: </span>"${characterInfo.mass}"</p>`;
-    document.querySelector(".search-form").scrollIntoView(true);
+	document.querySelector(".search-form").scrollIntoView(true);
 
-  // Fetch data about films and starships related to the character:
+	// Fetch data about films and starships related to the character:
 	const filmsWithCharacter = document.querySelector(".character-film-list");
 	getItemData(characterInfo.films, filmsWithCharacter);
 	const starshipsWithCharacter = document.querySelector(".character-starship-list");
@@ -206,7 +204,7 @@ function displayStarshipDetails(starshipInfo) {
 	starship.scrollIntoView();
 }
 
-//// ERROR HANDLING ////
+//--- ERROR HANDLING ---//
 function handleError(error, DOMelement) {
 	console.error(error);
 	const err = document.createElement("p");
