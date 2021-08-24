@@ -64,11 +64,12 @@ async function fetchAllStarships() {
 }
 
 async function fetchAllCharacters() {
+  const searchInput = document.querySelector(".search");
+	searchInput.addEventListener("input", showCharacters);
 	window.addEventListener("click", function () {
 		characterList.innerHTML = "";
+		searchInput.value = "";
 	});
-	const searchInput = document.querySelector(".search");
-	searchInput.addEventListener("input", showCharacters);
 
 	// 8 pages of people in Star Wars API:
 	for (let i = 1; i < 9; i++) {
