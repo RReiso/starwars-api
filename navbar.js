@@ -3,8 +3,8 @@ const hamburger = document.querySelector("#hamburger");
 const menuItems = document.querySelectorAll(".nav-link");
 
 hamburger.addEventListener("click", toggleHamburger);
-menuItems.forEach((menuItem) => {
-	menuItem.addEventListener("click", toggleHamburger);
+menuItems.forEach((item) => {
+	item.addEventListener("click", toggleHamburger);
 });
 
 function toggleHamburger() {
