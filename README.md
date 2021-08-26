@@ -2,7 +2,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://rreiso.github.io/starwars-api-project/"><img src="./sw-logo.png" alt="Star Wars logo" width="300"></a>
+  <a href="https://rreiso.github.io/starwars-api-project/"><img src="./images/sw-logo.png" alt="Star Wars logo" width="300"></a>
   <br>
   All About the Star Wars
 
