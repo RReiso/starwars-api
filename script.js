@@ -155,7 +155,7 @@ function displayFilmDetails(filmInfo) {
         <p ><span class="gold">Director: </span>${filmInfo.director}</p>
         <p ><span class="gold">Opening crawl: </span>"${filmInfo.opening_crawl}"</p>`;
 
-	// Fetch data about characters and starships related to the film:
+	// Fetch data about characters and starships associated with the film:
 	const charactersInFilm = document.querySelector(".character-list");
 	getItemData(filmInfo.characters, charactersInFilm);
 	const starshipsInFilm = document.querySelector(".starship-list");
@@ -178,7 +178,7 @@ function displayCharacterDetails(characterInfo) {
     <p ><span class="dark-gold">Mass: </span>"${characterInfo.mass}"</p>`;
 	document.querySelector(".search-form").scrollIntoView(true);
 
-	// Fetch data about films and starships related to the character:
+	// Fetch data about films and starships associated with the character:
 	const filmsWithCharacter = document.querySelector(".character-film-list");
 	getItemData(characterInfo.films, filmsWithCharacter);
 	const starshipsWithCharacter = document.querySelector(".character-starship-list");
