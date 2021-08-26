@@ -6,7 +6,7 @@
   <br>
   All About the Star Wars
 
-<h3 align="center">A project about the Star Wars using the Star Wars API <a href="https://swapi.dev/">the Star Wars API</a>.</h3>
+<h3 align="center">A project about the Star Wars using <a href="https://swapi.dev/">the Star Wars API</a>.</h3>
 
 ## Description
 This is a webpage that displays information about the Star Wars films, characters and starships. The data is requested using the Star Wars API and dynamically displayed on the page. The user can select a film, character or a starship and read more information about it.
