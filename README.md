@@ -22,7 +22,7 @@ Alternatively you can see and interact with the project live: \
 [All About the Star Wars](https://rreiso.github.io/starwars-api-project/) - live link
 ## Key Features
 * Selecting a film displays general information about it, including characters and starships. Clicking on a character or starship will take the user to another part of the page where more information about the object is shown.
-* A user can filter for a character using a search bar. Selecting a character will display information about it, including films this character was featured in and starships this character has piloted. Clicking on a film or starhip will take the user to a part of the page where more information about the object is shown.
+* A user can filter for a character using a search bar. Selecting a character will display information about it, including films this character was featured in and starships this character has piloted. Clicking on a film or starship will take the user to a part of the page where more information about the object is shown.
 * A user can select a starship from a given list to read more information about it.
 ## Built With
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Programming language
