@@ -15,3 +15,5 @@ function toggleHamburger() {
 		hamburger.setAttribute("aria-expanded", "false");
 	}
 }
+
+export {toggleHamburger};
