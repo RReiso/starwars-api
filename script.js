@@ -25,20 +25,24 @@ async function fetchAllFilms() {
 			.then((response) => response.json())
 			.then((data) => {
 				const films = data.results;
-				films.forEach((film) => {
-					const filmBox = document.createElement("div");
-					filmBox.classList.add("flex-box", "shadow", "grey-bg");
-					filmBox.innerHTML = `
+				if (films.length === 0) {
+					handleError("Empty data", filmErrors);
+				} else {
+					films.forEach((film) => {
+						const filmBox = document.createElement("div");
+						filmBox.classList.add("flex-box", "shadow", "grey-bg");
+						filmBox.innerHTML = `
           	<h3>Title: <span>${film.title}</span></h3>
             <h4>Episode: <span >${film.episode_id}</span></h4>
 						<h4 class="gold">Release year: <span class="year">${new Date(
 							film.release_date
 						).getFullYear()}</span></h4>`;
-					filmList.appendChild(filmBox);
-					filmBox.addEventListener("click", function () {
-						displayFilmDetails(film);
+						filmList.appendChild(filmBox);
+						filmBox.addEventListener("click", function () {
+							displayFilmDetails(film);
+						});
 					});
-				});
+				}
 			});
 	} catch (error) {
 		handleError(error, filmErrors);
@@ -53,9 +57,13 @@ async function fetchAllStarships() {
 				.then((response) => response.json())
 				.then((data) => {
 					const starships = data.results;
-					starships.forEach((starship) => {
-						displayItem(starship, starshipList);
-					});
+					if (starships.length === 0) {
+						handleError("Empty data", starshipErrors);
+					} else {
+						starships.forEach((starship) => {
+							displayItem(starship, starshipList);
+						});
+					}
 				});
 		} catch (error) {
 			handleError(error, starshipErrors);
@@ -77,7 +85,12 @@ async function fetchAllCharacters() {
 			await fetch(`${URI}/people/?page=${i}`)
 				.then((response) => response.json())
 				.then((data) => {
-					allPeople.push(...data.results);
+					const people = data.results;
+					if (people.length === 0) {
+						handleError("Empty data", characterErrors);
+					} else {
+						allPeople.push(...people);
+					}
 				});
 		} catch (error) {
 			handleError(error, characterErrors);
