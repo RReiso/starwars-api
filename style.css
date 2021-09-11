@@ -410,10 +410,11 @@ footer {
 }
 
 @media (min-width: 43.75em) {
-  /* || GENERAL STYLES */
-  .section-text{
-    margin: 2rem 2rem;
-  }
+	/* || GENERAL STYLES */
+
+	.section-text {
+		margin: 2rem 2rem;
+	}
 
 	/* || NAVIAGTION */
 
@@ -472,8 +473,9 @@ footer {
 }
 
 @media (min-width: 62em) {
-  /* || GENERAL STYLES */
-  .section-text{
-    margin: 2rem 6rem;
-  }
+	/* || GENERAL STYLES */
+
+	.section-text {
+		margin: 2rem 6rem;
+	}
 }
