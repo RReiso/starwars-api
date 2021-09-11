@@ -12,6 +12,7 @@ const characterErrors = document.querySelector(".character-errors");
 const starshipErrors = document.querySelector(".starship-errors");
 
 //--- START PROGRAM ---//
+
 fetchAllFilms();
 fetchAllStarships();
 fetchAllCharacters();

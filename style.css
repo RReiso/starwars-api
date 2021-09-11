@@ -408,7 +408,13 @@ footer {
 		max-width: 70%;
 	}
 }
+
 @media (min-width: 43.75em) {
+  /* || GENERAL STYLES */
+  .section-text{
+    margin: 2rem 2rem;
+  }
+
 	/* || NAVIAGTION */
 
 	.nav-line {
@@ -463,4 +469,11 @@ footer {
 		flex-direction: row;
 		justify-content: space-evenly;
 	}
+}
+
+@media (min-width: 62em) {
+  /* || GENERAL STYLES */
+  .section-text{
+    margin: 2rem 6rem;
+  }
 }
