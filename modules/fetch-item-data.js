@@ -15,11 +15,9 @@ function getItemData(itemURLs, list) {
 
   itemURLs.forEach(async (url) => {
     try {
-      await fetch(url)
-        .then((response) => response.json())
-        .then((itemInfo) => {
-          displayItem(itemInfo, list);
-        });
+      const response = await fetch(url);
+      const itemInfo = await response.json();
+      displayItem(itemInfo, list);
     } catch (error) {
       handleError(error, list);
     }
