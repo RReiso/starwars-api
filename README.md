@@ -8,7 +8,7 @@
 
 ## Description
 
-This is a webpage that displays information about the Star Wars films, characters and starships. The data is requested using the Star Wars API and dynamically displayed on the page. The user can select a film, character or a starship and read more information about it.
+This is a web page that displays information about the Star Wars films, characters and starships. The data is requested using the Star Wars API and dynamically displayed on the page. The user can select a film, character or a starship and read more information about it.
 
 ## Getting Started
 
